@@ -1,16 +1,24 @@
 const ROUTES = [
   {
     url: "/auth",
+    auth: false,
     proxy: {
-      target: "https://www.google.com",
+      target: "http://localhost:7672",
       changeOrigin: true,
+      pathRewrite: {
+        "^/auth": "/", // rewrite path
+      },
     },
   },
   {
     url: "/notification",
+    auth: true,
     proxy: {
-      target: "http://localhost:8000/",
+      target: "http://localhost:7673",
       changeOrigin: true,
+      pathRewrite: {
+        "^/notification": "/", // rewrite path
+      },
     },
   },
 ];

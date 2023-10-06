@@ -1,9 +1,9 @@
 const express = require("express");
 const dotnev = require("dotenv");
 
-const logging = require("./logging");
+const logging = require("./utils/logging");
 const ROUTES = require("./routes");
-const proxies = require("./proxy");
+const proxies = require("./utils/proxy");
 
 const app = express();
 dotnev.config();
