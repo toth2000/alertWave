@@ -1,2 +1,7 @@
+### Server
+
 # Gateway
 /server/gateway/node_modules
+
+# Auth Micro-service
+/server/services/authentication/node_modules
