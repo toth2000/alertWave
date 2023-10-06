@@ -2,6 +2,8 @@
 
 # Gateway
 /server/gateway/node_modules
+/server/gateway/.env
 
 # Auth Micro-service
 /server/services/authentication/node_modules
+/server/services/authentication/.env
