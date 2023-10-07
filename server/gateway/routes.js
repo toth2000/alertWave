@@ -1,3 +1,8 @@
+const dotenv = require("dotenv");
+dotenv.config;
+
+const ALPHAVANTAGE_API_KEY = process.env.ALPHAVANTAGE_API_KEY;
+
 const ROUTES = [
   {
     url: "/auth",
@@ -11,13 +16,14 @@ const ROUTES = [
     },
   },
   {
-    url: "/notification",
+    url: "/stock/search/:keyword",
     auth: true,
     proxy: {
-      target: "http://localhost:7673",
+      target: "https://www.alphavantage.co/query",
       changeOrigin: true,
-      pathRewrite: {
-        "^/notification": "/", // rewrite path
+      pathRewrite: (path, req) => {
+        const { keyword } = req.params;
+        return `/?function=SYMBOL_SEARCH&keywords=${keyword}&apikey=${ALPHAVANTAGE_API_KEY}`;
       },
     },
   },

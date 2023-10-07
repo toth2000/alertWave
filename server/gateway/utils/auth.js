@@ -29,8 +29,8 @@ const jwtCheckExpiry = (decodedToken) => {
 
 const getHeaderToken = (req) => {
   try {
-    const { token } = req.headers;
-    const acessToken = token.split(" ")[1];
+    const { authorization } = req.headers;
+    const acessToken = authorization.split(" ")[1];
     return acessToken;
   } catch (error) {
     console.error("Header not provided", error);
