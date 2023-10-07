@@ -16,6 +16,17 @@ const ROUTES = [
     },
   },
   {
+    url: "/subscription",
+    auth: false,
+    proxy: {
+      target: "http://localhost:7673",
+      changeOrigin: true,
+      pathRewrite: {
+        "^/subscription": "/", // rewrite path
+      },
+    },
+  },
+  {
     url: "/stock/search/:keyword",
     auth: true,
     proxy: {
