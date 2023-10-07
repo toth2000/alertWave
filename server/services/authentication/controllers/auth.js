@@ -17,7 +17,6 @@ const { createFcmTableEntry } = require("../queries/fcm_token");
 
 const loginUser = async (req, res) => {
   try {
-    console.log("Req Body: ", req.body);
     if (!validateKeys(loginKeys, req.body)) {
       return res.status(400).json({
         message: "Please fill all the required fields",
