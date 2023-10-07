@@ -11,3 +11,7 @@
 # Scheduler Micro-service
 /server/services/scheduler/node_modules
 /server/services/scheduler/.env
+
+# Subscription Micro-service
+/server/services/subscription/node_modules
+/server/services/subscription/.env
