@@ -1,0 +1,29 @@
+{
+  "name": "alertwave-scheduler",
+  "version": "0.0.1",
+  "description": "A task scheduler to periodically fetch price details and process notification",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toth2000/alertWave.git"
+  },
+  "author": "Tothagata Bhattacharjee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toth2000/alertWave/issues"
+  },
+  "homepage": "https://github.com/toth2000/alertWave#readme",
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "dotenv": "^16.3.1",
+    "mysql2": "^3.6.1",
+    "node-cron": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
