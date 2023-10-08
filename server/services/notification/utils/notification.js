@@ -4,18 +4,12 @@ const { getMessaging } = require("firebase-admin/messaging");
 const sendNotification = (registrationTokens, messageTitle, messageBody) => {
   try {
     const message = {
-      notification: {
+      data: {
         title: messageTitle,
         body: messageBody,
       },
       tokens: registrationTokens,
     };
-
-    console.log({
-      registrationTokens,
-      messageTitle,
-      messageBody,
-    });
 
     getMessaging()
       .sendEachForMulticast(message)
