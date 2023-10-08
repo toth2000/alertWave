@@ -15,3 +15,8 @@
 # Subscription Micro-service
 /server/services/subscription/node_modules
 /server/services/subscription/.env
+
+# Notification Micro-service
+/server/services/notification/node_modules
+/server/services/notification/.env
+/server/services/notification/alertwave-41801-firebase-adminsdk-8qeet-b3ab70224d.json

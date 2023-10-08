@@ -11,6 +11,11 @@ console.log("The scheduler service started");
 
 // Every 12 hr : 0 */12 * * *
 // Every Min : * * * * *
+const sendMessageToQueue = (channel, data) => {
+  channel.sendToQueue(queue, Buffer.from(JSON.stringify(data)));
+  console.log(" [x] Sent ", data);
+};
+
 const task = corn.schedule("* 5 * * *", async () => {
   try {
     console.log("Scheduler Task Running");
@@ -35,12 +40,18 @@ const task = corn.schedule("* 5 * * *", async () => {
       }
 
       if (item.stock !== prevStock || indx === result.length - 1) {
-        channel.sendToQueue(
-          queue,
-          Buffer.from(JSON.stringify({ [prevStock]: message[prevStock] }))
-        );
+        sendMessageToQueue(channel, {
+          stock: prevStock,
+          fcmToken: message[prevStock],
+        });
 
-        console.log(" [x] Sent ", message[prevStock]);
+        // Handling Edge case of last element
+        if (item.stock !== prevStock && indx === result.length - 1) {
+          sendMessageToQueue(channel, {
+            stock: item.stock,
+            fcmToken: message[item.stock],
+          });
+        }
         prevStock = item.stock;
       }
     });
