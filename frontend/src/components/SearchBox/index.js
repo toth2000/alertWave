@@ -11,7 +11,7 @@ import {
 
 import SearchIcon from "@mui/icons-material/Search";
 
-const SearchBox = () => {
+const SearchBox = ({ value, name, handleChange, handleSearch }) => {
   return (
     <Stack width={{ xs: "90%", md: "60%" }}>
       <Paper elevation={2} sx={{ p: { xs: 2, md: 5 } }}>
@@ -30,6 +30,9 @@ const SearchBox = () => {
           <Grid item width={"80%"}>
             <TextField
               fullWidth
+              value={value}
+              name={name}
+              onChange={(e) => handleChange(e)}
               id="search"
               label="Company Name"
               variant="outlined"
@@ -37,7 +40,7 @@ const SearchBox = () => {
             />
           </Grid>
           <Grid item>
-            <IconButton aria-label="search">
+            <IconButton onClick={handleSearch} aria-label="search">
               <SearchIcon />
             </IconButton>
           </Grid>

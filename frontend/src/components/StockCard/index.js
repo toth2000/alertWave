@@ -16,12 +16,12 @@ const StockCard = ({ subscribed, name, onAddClick, onDeleteClick }) => {
       <Card elevation={5}>
         <CardContent>
           <Stack alignItems={"center"} gap={1}>
-            <Typography sx={{ fontSize: 18 }}>{name}</Typography>
+            <Typography sx={{ fontSize: 18 }}>{name.toUpperCase()}</Typography>
             {subscribed ? (
               <Button
                 variant="outlined"
                 color="error"
-                onClick={onDeleteClick}
+                onClick={() => onDeleteClick(name)}
                 startIcon={<DeleteIcon />}
               >
                 Delete
@@ -29,7 +29,7 @@ const StockCard = ({ subscribed, name, onAddClick, onDeleteClick }) => {
             ) : (
               <Button
                 variant="contained"
-                onClick={onAddClick}
+                onClick={() => onAddClick(name)}
                 startIcon={<AddIcon />}
               >
                 Add
