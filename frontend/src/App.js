@@ -13,11 +13,34 @@ import { AuthContext, useAuthContext } from "./context/AuthContext";
 import ProgressLoader from "./components/ProgressLoader";
 import { AppContext, useAppContext } from "./context/AppContext";
 import { AUTH_ROUTE, HOME_ROUTE, PROFILE_ROUTE } from "./constant/routes";
+import { useEffect, useState } from "react";
+import { onMessage } from "firebase/messaging";
 
 function App() {
+  const [notificationList, setNotificationList] = useState([]);
+  const [newNotification, setNewNotification] = useState(null);
   const { isTokenFound } = useFcm(firebaseMessaging);
   const authContext = useAuthContext();
   const appContext = useAppContext();
+
+  useEffect(() => {
+    onMessage(firebaseMessaging, (payload) => {
+      const notificationTitle = payload.data.title;
+      const notificationBody = payload.data.body;
+
+      setNewNotification({
+        id: payload.messageId,
+        title: notificationTitle,
+        body: notificationBody,
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    if (newNotification) {
+      setNotificationList([...notificationList, newNotification]);
+    }
+  }, [newNotification]);
 
   return (
     <AppContext.Provider value={appContext}>
@@ -41,7 +64,10 @@ function App() {
               <Route path={PROFILE_ROUTE} element={<MySubscriptionPage />} />
             </Routes>
           )}
-          <NotificationContainer notificationList={[]} />
+          <NotificationContainer
+            notificationList={notificationList}
+            setNotificationList={setNotificationList}
+          />
         </BrowserRouter>
         <ProgressLoader />
       </AuthContext.Provider>

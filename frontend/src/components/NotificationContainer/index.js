@@ -1,7 +1,12 @@
 import { Container, Snackbar } from "@mui/material";
 import Notification from "../Notification";
 
-const NotificationContainer = ({ notificationList }) => {
+const NotificationContainer = ({ notificationList, setNotificationList }) => {
+  const handleNotificationClose = (id) => {
+    const result = notificationList.filter((item) => item.id !== id);
+    setNotificationList(result);
+  };
+
   return (
     <Snackbar
       open={true}
@@ -9,7 +14,11 @@ const NotificationContainer = ({ notificationList }) => {
     >
       <Container>
         {notificationList.map((item) => (
-          <Notification title={"IBM Alert"} message={"Low price"} />
+          <Notification
+            key={item.id}
+            payload={item}
+            handleNotificationClose={handleNotificationClose}
+          />
         ))}
       </Container>
     </Snackbar>

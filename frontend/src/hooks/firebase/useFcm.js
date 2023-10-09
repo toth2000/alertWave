@@ -1,27 +1,36 @@
 import { useEffect, useState } from "react";
 import { getToken, onMessage } from "firebase/messaging";
+import { registerDevice } from "../../api/subscription";
+import { getLocalStorageItem } from "../../utils/localStorage";
 
 export const useFcm = (messaging) => {
   const [isTokenFound, setTokenFound] = useState(true);
+  const [userId, setUserId] = useState(null);
+  const authData = getLocalStorageItem("auth");
 
   useEffect(() => {
-    getFirebaseToken();
-    onMessage(messaging, (payload) => {
-      console.log(payload);
-    });
-  }, []);
+    if (authData?.userId) setUserId(authData.userId);
+  }, [authData]);
+
+  useEffect(() => {
+    if (userId) {
+      getFirebaseToken();
+    }
+  }, [userId]);
 
   const getFirebaseToken = () => {
     return getToken(messaging, {
       vapidKey:
         "BKLpvwuLv87NE8kW1RgzTOGsimAhhkjjoIU1e1u4sbSMMa_Ka-AfdnJV75L8V6D6ybE9izidOt42Psjl0FJaYWY",
     })
-      .then((currentToken) => {
+      .then(async (currentToken) => {
         if (currentToken) {
           console.log("current token for client: ", currentToken);
           setTokenFound(true);
-          // Track the token -> client mapping, by sending to backend server
-          // show on the UI that permission is secured
+          try {
+            const { data } = await registerDevice(userId, currentToken);
+            console.log("Token Saved to Server: ", data);
+          } catch (error) {}
         } else {
           console.log(
             "No registration token available. Request permission to generate one."
