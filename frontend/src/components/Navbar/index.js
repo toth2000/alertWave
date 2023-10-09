@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
-import { PROFILE_ROUTE, AUTH_ROUTE } from "../../constant/routes";
+import { PROFILE_ROUTE, AUTH_ROUTE, HOME_ROUTE } from "../../constant/routes";
 
 import { AuthContext } from "../../context/AuthContext";
 
@@ -30,8 +30,21 @@ const Navbar = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Alert Wave
           </Typography>
+
           {authState?.userId ? (
             <>
+              <Link
+                to={HOME_ROUTE}
+                style={{
+                  textDecoration: "none",
+                  color: "inherit",
+                  marginRight: "15px",
+                }}
+              >
+                <Button color="inherit" variant="text">
+                  Browse
+                </Button>
+              </Link>
               <Link
                 to={PROFILE_ROUTE}
                 style={{

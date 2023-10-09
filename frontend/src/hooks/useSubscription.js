@@ -18,6 +18,10 @@ const useSubscription = (list, setList) => {
       const { data } = await createUserSubscription(userId, stock);
       if (data?.result === true) {
         alert(data?.message);
+        const result = list.map((element) =>
+          element.symbol !== stock ? element : { ...element, subscribed: true }
+        );
+        setList(result);
       }
     } catch (error) {
       console.error("Error in API Call: ", error);
@@ -36,8 +40,10 @@ const useSubscription = (list, setList) => {
       const { data } = await deleteUserSubscription(userId, stock);
       if (data?.result === true) {
         alert(data?.message);
-        const update = getUpdatedList(list, stock);
-        setList(update);
+        const result = list.map((element) =>
+          element.symbol !== stock ? element : { ...element, subscribed: false }
+        );
+        setList(result);
       }
     } catch (error) {
       console.error("Error in API Call: ", error);
@@ -53,7 +59,7 @@ const useSubscription = (list, setList) => {
     return result;
   };
 
-  return { createSubscription, deleteSubscription };
+  return { createSubscription, deleteSubscription, getUpdatedList };
 };
 
 export default useSubscription;

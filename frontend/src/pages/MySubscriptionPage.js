@@ -23,7 +23,7 @@ const MySubscriptionPage = () => {
 
   const { setLoading } = useContext(AppContext);
   const { authState, isUserAuthenticated } = useContext(AuthContext);
-  const { createSubscription, deleteSubscription } =
+  const { createSubscription, deleteSubscription, getUpdatedList } =
     useSubscription(list, setList);
   const navigate = useNavigate();
 
@@ -57,6 +57,8 @@ const MySubscriptionPage = () => {
 
   const handleDeleteSubscription = async (stock) => {
     await deleteSubscription(authState?.userId, stock);
+    const result = getUpdatedList(list, stock);
+    setList(result);
   };
 
   useEffect(() => {
@@ -68,7 +70,7 @@ const MySubscriptionPage = () => {
   }, [list]);
 
   useEffect(() => {
-    if (!isUserAuthenticated) navigate(AUTH_ROUTE);
+    if (!isUserAuthenticated()) navigate(AUTH_ROUTE);
   }, []);
 
   return (
