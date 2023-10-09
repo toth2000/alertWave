@@ -12,6 +12,7 @@ import NotificationContainer from "./components/NotificationContainer";
 import { AuthContext, useAuthContext } from "./context/AuthContext";
 import ProgressLoader from "./components/ProgressLoader";
 import { AppContext, useAppContext } from "./context/AppContext";
+import { AUTH_ROUTE, HOME_ROUTE, PROFILE_ROUTE } from "./constant/routes";
 
 function App() {
   const { isTokenFound } = useFcm(firebaseMessaging);
@@ -35,9 +36,9 @@ function App() {
             </Stack>
           ) : (
             <Routes>
-              <Route path={"/"} element={<AuthPage />} />
-              <Route path={"/home"} element={<SearchPage />} />
-              <Route path={"/profile"} element={<MySubscriptionPage />} />
+              <Route path={AUTH_ROUTE} element={<AuthPage />} />
+              <Route path={HOME_ROUTE} element={<SearchPage />} />
+              <Route path={PROFILE_ROUTE} element={<MySubscriptionPage />} />
             </Routes>
           )}
           <NotificationContainer notificationList={[]} />
