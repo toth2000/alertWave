@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getToken, onMessage } from "firebase/messaging";
 
 export const useFcm = (messaging) => {
-  const [isTokenFound, setTokenFound] = useState();
+  const [isTokenFound, setTokenFound] = useState(true);
 
   useEffect(() => {
     getFirebaseToken();
@@ -32,6 +32,7 @@ export const useFcm = (messaging) => {
       })
       .catch((err) => {
         console.log("An error occurred while retrieving token. ", err);
+        setTokenFound(false);
         // catch error while creating client token
       });
   };
