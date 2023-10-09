@@ -145,6 +145,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Thanks to [Alpa Vantage](https://www.alphavantage.co/) for providing API to get real time data related to stock market.
 - Inspired by the need for real-time stock market alerts.
 
----
-
-**Note:** Replace placeholder URLs, usernames, and project-specific information in the template with your actual details.
