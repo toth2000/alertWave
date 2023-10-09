@@ -3,6 +3,7 @@
 AlertWave is a real-time stock market price alert system that allows users to subscribe to stock alerts and receive periodic notifications based on their preferences.
 
 ## Content
+
 - [Architecture Overview](#architecture-overview)
 - [Working Demo](#working-demo)
 - [Prerequisites](#prerequisites)
@@ -37,9 +38,11 @@ The AlertWave system is built on a microservices architecture, providing modular
    - Consumes messages from the queue, fetches the current stock price, and sends notifications to subscribed users using Firebase Cloud Messaging (FCM).
 
 ## Working Demo
+
 - Background Notification
 
-![Image 1](https://raw.githubusercontent.com/toth2000/alertWave/master/screenshot/notification_background.png) 
+![Image 1](https://raw.githubusercontent.com/toth2000/alertWave/master/screenshot/notification_background.png)
+
 - Foreground Notification
 
 ![Image 2](https://raw.githubusercontent.com/toth2000/alertWave/master/screenshot/notification_foreground.png)
@@ -69,7 +72,7 @@ The AlertWave system is built on a microservices architecture, providing modular
 - Make sure you define the value of all the variable in the `.env` mentioned in the `.env.example` file.
 - Add a firebase.config file in the `/src` directory of the project
 
---- 
+---
 
 #### To Run the Server locally
 
@@ -116,6 +119,10 @@ The AlertWave system is built on a microservices architecture, providing modular
 - Ensure that you set up the necessary environment variables for each microservice. Refer to the `.env.example` files in each microservice folder for guidance.
 - Visit https://www.alphavantage.co/ to generate API key to get stock market details
 
+## API Documentation
+
+Explore the full capabilities of the AlertWave API by referring to our comprehensive [API Documentation](https://documenter.getpostman.com/view/19488087/2s9YJhvekV). Whether you're integrating AlertWave into your application, developing additional features, or simply curious about how our API works, this documentation provides clear and detailed insights into each endpoint. Get started with authentication, manage stock subscriptions, and understand the intricacies of our notification system. If you have any questions or need assistance, feel free to reach out!
+
 ## Usage
 
 1. **Authentication:**
@@ -144,4 +151,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Thanks to [Firebase](https://firebase.google.com/) for providing a reliable Cloud Messaging service.
 - Thanks to [Alpa Vantage](https://www.alphavantage.co/) for providing API to get real time data related to stock market.
 - Inspired by the need for real-time stock market alerts.
-
