@@ -8,6 +8,7 @@ AlertWave is a real-time stock market price alert system that allows users to su
 - [Working Demo](#working-demo)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [API Documentation](#api-documentation)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
